@@ -11,3 +11,11 @@
 
 - 설정 파일 부분의 설명이 와닿지 않아. 실제 예시를 보면서 만들었음.
 https://github.com/jaegertracing/jaeger/blob/main/docker-compose/tail-sampling/jaeger-v2-config.yml
+
+
+- Service Performance Monitor 설정
+https://www.jaegertracing.io/docs/2.11/architecture/spm/
+
+- prometheus 같은 monitor설정이 보여서 아래 문서를 참조
+https://github.com/jaegertracing/jaeger/blob/main/docker-compose/monitor/docker-compose.yml
+https://github.com/jaegertracing/jaeger/blob/main/cmd/jaeger/config-spm.yaml
