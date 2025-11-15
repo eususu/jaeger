@@ -1,0 +1,33 @@
+service:
+  extensions: [jaeger_storage, jaeger_query]
+  pipelines:
+    traces:
+      receivers: [nop]
+      processors: [batch]
+      exporters: [nop]
+
+extensions:
+  jaeger_query:
+    base_path: /ui
+  jaeger_storage:
+    backends:
+      trace_storage:
+        badger:
+          directories:
+            keys: "/tmp/jaeger"
+            values: "/tmp/jaeger"
+          ephemeral: false:
+          ttl:
+            spans: 48h
+      trace_archive_storage:
+        badger:
+          directories:
+            keys: "/tmp/jaeger_archive"
+            values: "/tmp/jaeger_archive"
+          ephemeral: false:
+          ttl:
+            spans: 720h
+
+exporters:
+  jaeger_storage_exporter:
+    trace_storage: trace_storage

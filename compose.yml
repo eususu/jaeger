@@ -24,12 +24,14 @@ services:
     environment:
       - COLLECTOR_OTLP_ENABLED=true
       - SPAN_STORAGE_TYPE=badger
+      - QUERY_BASE_PATH=/ui
       - BADGER_EPHEMERAL=false
       - BADGER_DIRECTORY_VALUE=/badger/data
       - BADGER_DIRECTORY_KEY=/badger/key
       - BADGER_SPAN_STORE_TTL=2160h # 90 days (3 months)
     volumes:
       - jaeger-data:/badger
+      - ./jaeger-config.yml:/etc/jaeger/config.yml
     restart: unless-stopped
 
   prometheus:
