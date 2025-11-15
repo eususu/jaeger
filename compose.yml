@@ -21,8 +21,6 @@ services:
     ports:
       - "16686:16686" # Jaeger UI
       - "14250:14250" # Jaeger collector - gRPC (internal)
-      - "4317:4317" # OTLP gRPC receiver
-      - "4318:4318" # OTLP HTTP receiver
     environment:
       - COLLECTOR_OTLP_ENABLED=true
       - SPAN_STORAGE_TYPE=badger
