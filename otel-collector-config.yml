@@ -12,16 +12,11 @@ processors:
     send_batch_size: 1024
 
 exporters:
-  otlp:
-    endpoint: jaeger:4317
+  otlphttp:
+    endpoint: http://jaeger:4318
     tls:
       insecure: true
     timeout: 30s
-    retry_on_failure:
-      enabled: true
-      initial_interval: 5s
-      max_interval: 30s
-      max_elapsed_time: 300s
 
   prometheus:
     endpoint: "0.0.0.0:8889"
@@ -34,7 +29,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp, debug]
+      exporters: [otlphttp, debug]
     
     metrics:
       receivers: [otlp]
