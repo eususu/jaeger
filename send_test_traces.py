@@ -16,7 +16,7 @@ provider = TracerProvider(resource=resource)
 
 # OTLP HTTP Exporter 설정
 otlp_exporter = OTLPSpanExporter(
-    endpoint="https://telemetry.sudal.me/v1/traces",
+    endpoint="http://172.30.1.15:4318/v1/traces",
 )
 
 # Span Processor 추가

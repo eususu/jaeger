@@ -16,7 +16,7 @@ resource = Resource.create({"service.name": "test-metrics-service"})
 
 # OTLP HTTP Metric Exporter 설정
 otlp_exporter = OTLPMetricExporter(
-    endpoint="http://localhost:4318/v1/metrics",
+    endpoint="https://telemetry.sudal.me/v1/metrics",
 )
 
 # Metric Reader 설정 (5초마다 export)

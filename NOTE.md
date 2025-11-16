@@ -19,3 +19,19 @@ https://www.jaegertracing.io/docs/2.11/architecture/spm/
 - prometheus 같은 monitor설정이 보여서 아래 문서를 참조
 https://github.com/jaegertracing/jaeger/blob/main/docker-compose/monitor/docker-compose.yml
 https://github.com/jaegertracing/jaeger/blob/main/cmd/jaeger/config-spm.yaml
+
+
+
+## 컨테이너
+
+- synology nas에서 동작 시키는 경우 컨테이너 자체가 방화벽에 걸리는 문제가 있으므로, 여러 컨테이너간에 통신을 시키려면.. 컨테이너의 네트워크에 대한 방화벽 설정을 해야 함
+
+
+
+
+## 통합
+
+- 위의 synology 문제 우회를 위해서는.. 결국 하나의 container에 묶는 것이 정답에 가까움.
+- `jaeger`는 v2부터는 하나의 실행파일이라 좀 괜찮음
+- `open telemetry collector`는 contrib 이랑 나뉘어져 있는 것 같아보임
+- `prometheus` 도 단일 파일 이라 좋음 (promql 도구가 분리되어있음)
