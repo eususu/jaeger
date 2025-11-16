@@ -8,6 +8,8 @@ services:
     ports:
       - "4317:4317" # OTLP gRPC receiver
       - "4318:4318" # OTLP HTTP receiver
+    networks:
+      - observability
     depends_on:
       - jaeger
       - prometheus
@@ -20,9 +22,10 @@ services:
     ports:
       - "16686:16686" # Jaeger UI
       - "14250:14250" # Jaeger collector - gRPC (internal)
-      # 4317, 4318은 컨테이너 내부에서만 사용 (otel-collector가 접근)
       - "8888:8888" # Prometheus metrics exposed by the collector
       - "8889:8889" # Prometheus exporter metrics
+    networks:
+      - observability
     volumes:
       - jaeger-data:/badger
       - ./jaeger-config.yml:/etc/jaeger/config.yml
@@ -44,7 +47,17 @@ services:
       - prometheus-data:/prometheus
     ports:
       - "9090:9090" # Prometheus UI
+    networks:
+      - observability
     restart: unless-stopped
+
+networks:
+  observability:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "true"
+
 volumes:
   jaeger-data:
     driver: local
