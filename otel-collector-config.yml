@@ -29,7 +29,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlphttp, debug]
+      exporters: [otlp, debug]
     
     metrics:
       receivers: [otlp]
