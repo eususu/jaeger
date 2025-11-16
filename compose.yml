@@ -20,8 +20,7 @@ services:
     ports:
       - "16686:16686" # Jaeger UI
       - "14250:14250" # Jaeger collector - gRPC (internal)
-      - "4317:4317" # OTLP gRPC receiver
-      - "4318:4318" # OTLP HTTP receiver
+      # 4317, 4318은 컨테이너 내부에서만 사용 (otel-collector가 접근)
       - "8888:8888" # Prometheus metrics exposed by the collector
       - "8889:8889" # Prometheus exporter metrics
     volumes:
