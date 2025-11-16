@@ -13,7 +13,7 @@ processors:
 
 exporters:
   otlphttp:
-    endpoint: http://jaeger:4318
+    endpoint: jaeger:4317
     tls:
       insecure: true
     timeout: 30s
